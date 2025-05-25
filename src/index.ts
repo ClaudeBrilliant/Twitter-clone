@@ -1,0 +1,1 @@
+const name1 : string  = 'clyde';

@@ -8,10 +8,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const postsDiv = document.querySelector(".posts");
-const commentsDiv = document.querySelector(".comments");
 const userSearch = document.getElementById("search-type");
 const userInfo = document.querySelector(".info");
+const userPost = document.querySelector(".posts");
+const userComment = document.querySelector(".comments");
 let users = [];
 function fetchUsers() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -29,31 +29,71 @@ function displayUserInfo(userId) {
     const user = users.find(u => u.id === userId);
     if (!user || !userInfo)
         return;
-    userInfo.innerHTML = '';
-    const info = `
+    userInfo.innerHTML = `
     <h1>${user.name}</h1>
     <p><strong>@</strong> ${user.username}</p>
-    <p><strong></strong> <a href="https://${user.website}" target="_blank">${user.website}</a></p>
-    <p><strong></strong> ${user.company.catchPhrase}</p>
-    <p><strong></strong> ${user.address.city}</p>
+    <p><a href="https://${user.website}" target="_blank">${user.website}</a></p>
+    <p>${user.company.catchPhrase}</p>
+    <p>${user.address.city}</p>
   `;
-    userInfo.innerHTML = info;
 }
-userSearch.addEventListener('change', (e) => {
+function fetchPostsByUser(userId) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const res = yield fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`);
+        return yield res.json();
+    });
+}
+function displayUserPost(posts) {
+    userPost.innerHTML = '';
+    posts.forEach(post => {
+        const postBody = document.createElement('div');
+        postBody.classList.add('post');
+        postBody.dataset.postId = post.id.toString(); //To enable detect which post was clicked
+        postBody.innerHTML = `
+      <img src="/assets/xdp.jpeg" alt="Post image">
+      <div class="post-content">
+        <h3>${post.title}</h3>
+        <p>${post.body}</p>
+      </div>
+      `;
+        userPost.appendChild(postBody);
+    });
+}
+function fetchCommentByPost(postId) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const res = yield fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`);
+        return yield res.json();
+    });
+}
+function displayPostComment(comments) {
+    userComment.innerHTML = '';
+    comments.forEach(comment => {
+        const commentBody = document.createElement('div');
+        commentBody.classList.add('comment');
+        commentBody.innerHTML = `
+    <img src="/assets/xdp.jpeg" alt="Post image">
+      <div class="comment-content">
+        <h3>${comment.name}</h3>
+        <p>${comment.body}</p>
+      </div>
+
+      </hr>
+    `;
+        userComment.appendChild(commentBody);
+    });
+}
+userPost.addEventListener('click', (e) => __awaiter(void 0, void 0, void 0, function* () {
+    const postElement = e.target.closest('.post');
+    if (!postElement || !postElement.dataset.postId)
+        return;
+    const postId = parseInt(postElement.dataset.postId);
+    const comments = yield fetchCommentByPost(postId);
+    displayPostComment(comments);
+}));
+userSearch.addEventListener('change', (e) => __awaiter(void 0, void 0, void 0, function* () {
     const selectedId = parseInt(e.target.value);
     displayUserInfo(selectedId);
-});
-function fetchPosts() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const res = yield fetch("https://jsonplaceholder.typicode.com/posts");
-        return res.json();
-    });
-}
-function fetchComments() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const res = yield fetch("https://jsonplaceholder.typicode.com/comments");
-        return res.json();
-    });
-}
-// Example usage
-fetchUsers(); // this will populate the select
+    const posts = yield fetchPostsByUser(selectedId);
+    displayUserPost(posts);
+}));
+fetchUsers();

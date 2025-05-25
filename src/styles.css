@@ -48,6 +48,9 @@ nav {
   font-size: 24px;
   margin: 0;
 }
+.hero-section{
+  background-color: rgb(230, 230, 230);
+}
 
 .hero-section img{
     width: 100%;
@@ -73,10 +76,66 @@ nav {
     border-radius: 50%;
     margin-top: -170px;
     margin-bottom: 30px;
+    padding-left: 30px;
 }
 
 .container{
 display: flex;
 flex-direction: row;
 gap: 30px;
+box-sizing: border-box;
+}
+
+.post-content{
+  display: flex;
+  flex-direction: column;
+  gap: 10px
+}
+
+.posts{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  width: 50%;
+  padding: 50px 20px;
+}
+
+.post{
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  padding: 20PX;
+}
+
+.posts img{
+  width: 200px;
+  height: 150px;
+}
+
+.comments{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  width: 50%;
+
+}
+
+.comments img{
+  width: 200px;
+  height: 150px;
+}
+
+.comment-content{
+  display: flex;
+  flex-direction: column;
+  gap: 10px
+}
+
+.comment{
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  padding: 20PX;
 }

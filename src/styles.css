@@ -89,7 +89,7 @@ box-sizing: border-box;
 .post-content{
   display: flex;
   flex-direction: column;
-  gap: 10px
+  gap: 10px;
 }
 
 .posts{
@@ -105,14 +105,14 @@ box-sizing: border-box;
   display: flex;
   flex-direction: row;
   gap: 30px;
-  padding: 20PX;
+  padding: 20px;
 }
 
-.posts img{
+  .posts img{
   width: 200px;
   height: 150px;
   border-radius:20px;
-}
+  }
 
 .comments{
   display: flex;
@@ -132,14 +132,14 @@ box-sizing: border-box;
 .comment-content{
   display: flex;
   flex-direction: column;
-  gap: 10px
+  gap: 10px;
 }
 
 .comment{
   display: flex;
   flex-direction: row;
   gap: 30px;
-  padding: 20PX;
+  padding: 20px;
 }
 
 .post-header{
@@ -190,4 +190,67 @@ box-sizing: border-box;
 .comment-sect{
   display: flex;
   flex-direction: column;
+}
+
+
+@media (max-width: 968px) {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    flex-direction: column;
+  }
+
+  nav {
+    flex-direction: column;
+    padding: 15px 20px;
+    height: auto;
+    gap: 10px;
+    text-align: start; 
+    align-items: flex-start; 
+  }
+
+  .nav-left {
+    flex-direction: column;
+    align-items: flex-start; 
+  }
+
+  .nav-left select {
+    width: max-content;
+    border: none;
+    background-color: #f5f5f5;
+    
+   
+  }
+
+  .user-info {
+    flex-direction: column;
+    align-items: flex-start; 
+    text-align: start;
+  }
+
+  .user-info img {
+    margin: -100px 0 20px 30px;
+    padding: 0;
+    height: 200px;
+    width: 200px;
+  }
+
+  .info {
+    padding: 20px;
+    align-items: flex-start; 
+    text-align: start;
+  }
+
+  .container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .posts,
+  .comments {
+    width: 100%;
+    padding: 20px 0;
+  }
 }

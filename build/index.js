@@ -21,8 +21,9 @@ function fetchUsers() {
             const option = document.createElement("option");
             option.value = user.id.toString();
             option.textContent = user.name;
-            userSearch === null || userSearch === void 0 ? void 0 : userSearch.appendChild(option);
+            userSearch.appendChild(option);
         });
+        userSearch.value = '1';
     });
 }
 function displayUserInfo(userId) {
@@ -30,9 +31,10 @@ function displayUserInfo(userId) {
     if (!user || !userInfo)
         return;
     userInfo.innerHTML = `
+
     <h1>${user.name}</h1>
     <p><strong>@</strong> ${user.username}</p>
-    <p><a href="https://${user.website}" target="_blank">${user.website}</a></p>
+    <p>${user.website}</p>
     <p>${user.company.catchPhrase}</p>
     <p>${user.address.city}</p>
   `;
@@ -50,7 +52,7 @@ function displayUserPost(posts) {
         postBody.classList.add('post');
         postBody.dataset.postId = post.id.toString(); //To enable detect which post was clicked
         postBody.innerHTML = `
-      <img src="/assets/xdp.jpeg" alt="Post image">
+      <img src="/assets/depe.png" alt="Post image">
       <div class="post-content">
         <h3>${post.title}</h3>
         <p>${post.body}</p>
@@ -71,13 +73,13 @@ function displayPostComment(comments) {
         const commentBody = document.createElement('div');
         commentBody.classList.add('comment');
         commentBody.innerHTML = `
-    <img src="/assets/xdp.jpeg" alt="Post image">
+      <img src="/assets/xdp.jpeg" alt="Post image">
       <div class="comment-content">
         <h3>${comment.name}</h3>
         <p>${comment.body}</p>
+        <hr />
       </div>
-
-      </hr>
+      
     `;
         userComment.appendChild(commentBody);
     });

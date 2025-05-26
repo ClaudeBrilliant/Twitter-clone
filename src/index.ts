@@ -16,6 +16,7 @@ interface Post {
   id: number;
   title: string;
   body: string;
+  user?: User;
 }
 
 interface Comment {
@@ -68,20 +69,38 @@ async function fetchPostsByUser(userId: number): Promise<Post[]> {
 
 function displayUserPost(posts: Post[]) {
   userPost.innerHTML = ''; 
-
   posts.forEach(post => {
-    const postBody = document.createElement('div')
-     postBody.classList.add('post');
-     postBody.dataset.postId = post.id.toString() //To enable detect which post was clicked
+    const user = users.find(u => u.id === post.userId);
+    const postBody = document.createElement('div');
+    postBody.classList.add('post');
+    postBody.dataset.postId = post.id.toString(); //To enable detect which post was clicked
 
     postBody.innerHTML = `
       <img src="/assets/depe.png" alt="Post image">
       <div class="post-content">
-        <h3>${post.title}</h3>
+        <div class="post-header">
+            <h3>${user ? user.name : ''}</h3>
+            <img src="/assets/verify.png" alt="Post image">
+            <img src="/assets/twitter.png" alt="Post image">
+        </div>
         <p>${post.body}</p>
+        <div class = 'post-footer'>
+           <div class = 'pf-icons'>
+              <img src="/assets/message.png" alt="Post image">
+              <p>200</p>
+           </div>  
+            <div class = 'pf-icons'>
+              <img src="/assets/retweet.png" alt="Post image">
+              <p>200</p>
+           </div>  
+            <div class = 'pf-icons'>
+              <img src="/assets/heart.png" alt="Post image">
+              <p>200</p>
+           </div>           
+        </div>
       </div>
-      `
-       userPost.appendChild(postBody); 
+      `;
+    userPost.appendChild(postBody); 
   });
 }
 
@@ -98,11 +117,29 @@ function displayPostComment(comments: Comment[]) {
     commentBody.classList.add('comment');
 
     commentBody.innerHTML = `
-      <img src="/assets/xdp.jpeg" alt="Post image">
+      <img src="/assets/depe.png" alt="Post image">
       <div class="comment-content">
-        <h3>${comment.name}</h3>
+        <div class='comment-header'>
+         <h3>${comment.name}</h3>
+         <img src="/assets/verify.png" alt="Post image">
+         <img src="/assets/twitter.png" alt="Post image">
+       </div>
         <p>${comment.body}</p>
         <hr />
+        <div class='pf-icons'>
+          <div class = 'pf-icons'>
+              <img src="/assets/message.png" alt="Post image">
+              <p>0</p>
+           </div>  
+            <div class = 'pf-icons'>
+              <img src="/assets/retweet.png" alt="Post image">
+              <p>0</p>
+           </div>  
+            <div class = 'pf-icons'>
+              <img src="/assets/heart.png" alt="Post image">
+              <p>0</p>
+           </div> 
+        </div>
       </div>
       
     `;

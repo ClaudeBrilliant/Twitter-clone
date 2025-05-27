@@ -135,4 +135,13 @@ userSearch.addEventListener('change', (e) => __awaiter(void 0, void 0, void 0, f
     const posts = yield fetchPostsByUser(selectedId);
     displayUserPost(posts);
 }));
-fetchUsers();
+function initializeDefaultContent() {
+    return __awaiter(this, void 0, void 0, function* () {
+        yield fetchUsers();
+        const defaultUserId = 1;
+        displayUserInfo(defaultUserId);
+        const posts = yield fetchPostsByUser(defaultUserId);
+        displayUserPost(posts);
+    });
+}
+initializeDefaultContent();

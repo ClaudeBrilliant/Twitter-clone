@@ -80,6 +80,7 @@ nav {
 }
 
 .container{
+padding-top: 20px;
 display: flex;
 flex-direction: row;
 gap: 30px;
@@ -192,6 +193,12 @@ box-sizing: border-box;
   flex-direction: column;
 }
 
+.com-sec{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
 
 @media (max-width: 968px) {
   * {
@@ -252,5 +259,88 @@ box-sizing: border-box;
   .comments {
     width: 100%;
     padding: 20px 0;
+  }
+}
+
+@media screen and (max-width: 512px) {
+  body {
+    flex-direction: column;
+    width: 100%;
+  }
+  nav {
+    padding: 10px 5px;
+    flex-direction: column;
+    gap: 8px;
+    height: auto;
+  }
+
+  .nav-left select {
+    width: 100%;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  .user-info img {
+    width: 100px;
+    height: 100px;
+    margin-top: -40px;
+    margin-bottom: 15px;
+    padding-left: 10px;
+  }
+
+  .info {
+    padding: 10px;
+    font-size: 14px;
+    gap: 6px;
+  }
+
+  .container {
+    flex-direction: column;
+    padding: 8px;
+    gap: 10px;
+  }
+
+  .posts,
+  .comments {
+    width: 100%;
+    padding: 10px 0;
+    gap: 10px;
+  }
+
+  .posts img,
+  .comments img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .post,
+  .comment {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .post-header,
+  .comment-header {
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .post-header img,
+  .comment-header img,
+  .pf-icons img {
+    width: 16px;
+    height: 16px;
+  }
+
+  h1, h3 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 13px;
   }
 }

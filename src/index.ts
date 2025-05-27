@@ -166,4 +166,14 @@ userSearch.addEventListener('change', async (e) => {
 });
 
 
-fetchUsers();
+async function initializeDefaultContent() {
+  await fetchUsers();
+  const defaultUserId = 1;
+  displayUserInfo(defaultUserId);
+  const posts = await fetchPostsByUser(defaultUserId);
+  displayUserPost(posts);
+
+}
+
+
+initializeDefaultContent();
